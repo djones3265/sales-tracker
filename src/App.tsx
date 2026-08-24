@@ -1,126 +1,91 @@
+import { HashRouter, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
+
+import Dashboard from "./pages/Dashboard";
+import Orders from "./pages/Orders";
+import Reports from "./pages/Reports";
+import Manufacturers from "./pages/Manufacturers";
+import Customers from "./pages/Customers";
+import Utilities from "./pages/Utilities";
+import Territories from "./pages/Territories";
+import OrderDetails from "./pages/OrderDetails";
 
 function App() {
   return (
-    <div className="app">
-      <header className="topbar">
-        <div className="brand">
-          <div className="brand-name">POWER SERVICE AGENCY</div>
-          <div className="brand-subtitle">Sales Tracker</div>
+    <HashRouter>
+      <div className="app">
+        <header className="topbar">
+          <Link to="/" className="brand">
+            <div className="brand-name">POWER SERVICE AGENCY</div>
+            <div className="brand-subtitle">Sales Tracker</div>
+          </Link>
+
+          <div className="user">Davis Jones</div>
+        </header>
+
+        <div className="main-layout">
+          <aside className="sidebar">
+            <nav>
+              <div className="nav-section">
+                <div className="nav-section-title">MAIN</div>
+
+                <Link to="/" className="nav-item">
+                  Dashboard
+                </Link>
+
+                <Link to="/orders" className="nav-item">
+                  Orders
+                </Link>
+
+                <Link to="/reports" className="nav-item">
+                  Reports
+                </Link>
+              </div>
+
+              <div className="nav-section">
+                <div className="nav-section-title">MANAGEMENT</div>
+
+                <Link to="/manufacturers" className="nav-item">
+                  Manufacturers
+                </Link>
+
+                <Link to="/customers" className="nav-item">
+                  Customers
+                </Link>
+
+                <Link to="/utilities" className="nav-item">
+                  Utilities
+                </Link>
+
+                <Link to="/territories" className="nav-item">
+                  Territories
+                </Link>
+              </div>
+            </nav>
+          </aside>
+
+          <main className="content">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/orders" element={<Orders />} />
+              <Route
+                path="/orders/:orderId"
+                element={<OrderDetails />}
+              />
+              <Route path="/reports" element={<Reports />} />
+              <Route
+                path="/manufacturers"
+                element={<Manufacturers />}
+              />
+              <Route path="/customers" element={<Customers />} />
+              <Route path="/utilities" element={<Utilities />} />
+              <Route path="/territories" element={<Territories />} />
+            </Routes>
+          </main>
         </div>
-
-        <div className="user">
-          Davis Jones
-        </div>
-      </header>
-
-      <div className="main-layout">
-        <aside className="sidebar">
-          <nav>
-            <div className="nav-section">
-              <div className="nav-section-title">MAIN</div>
-
-              <button className="nav-item active">
-                Dashboard
-              </button>
-
-              <button className="nav-item">
-                Orders
-              </button>
-
-              <button className="nav-item">
-                Reports
-              </button>
-            </div>
-
-            <div className="nav-section">
-              <div className="nav-section-title">MANAGEMENT</div>
-
-              <button className="nav-item">
-                Manufacturers
-              </button>
-
-              <button className="nav-item">
-                Customers
-              </button>
-
-              <button className="nav-item">
-                Utilities
-              </button>
-
-              <button className="nav-item">
-                Territories
-              </button>
-            </div>
-          </nav>
-        </aside>
-
-        <main className="content">
-          <div className="page-header">
-            <div>
-              <h1>Dashboard</h1>
-              <p>Sales overview and order activity</p>
-            </div>
-
-            <button className="new-order-button">
-              + New Order
-            </button>
-          </div>
-
-          <section className="stats-grid">
-            <div className="stat-card">
-              <div className="stat-label">SALES THIS MONTH</div>
-              <div className="stat-value">$0.00</div>
-            </div>
-
-            <div className="stat-card">
-              <div className="stat-label">OPEN ORDERS</div>
-              <div className="stat-value">0</div>
-            </div>
-
-            <div className="stat-card">
-              <div className="stat-label">PENDING COMMISSION</div>
-              <div className="stat-value">$0.00</div>
-            </div>
-
-            <div className="stat-card">
-              <div className="stat-label">UPCOMING DELIVERIES</div>
-              <div className="stat-value">0</div>
-            </div>
-          </section>
-
-          <section className="dashboard-grid">
-            <div className="panel">
-              <div className="panel-header">
-                <h2>Recent Orders</h2>
-                <button className="text-button">View All</button>
-              </div>
-
-              <div className="empty-state">
-                <div className="empty-title">No orders yet</div>
-                <div className="empty-description">
-                  Your sales orders will appear here once you begin entering them.
-                </div>
-              </div>
-            </div>
-
-            <div className="panel">
-              <div className="panel-header">
-                <h2>Upcoming Deliveries</h2>
-              </div>
-
-              <div className="empty-state">
-                <div className="empty-title">No upcoming deliveries</div>
-                <div className="empty-description">
-                  Delivery information will appear here as orders are entered.
-                </div>
-              </div>
-            </div>
-          </section>
-        </main>
       </div>
-    </div>
+    </HashRouter>
   );
 }
- 
+
 export default App;
